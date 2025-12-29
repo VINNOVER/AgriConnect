@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriConnect - Liaison Agriculteurs & Restauration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-orange: #FF6B35;
+            --secondary-orange: #FF8E53;
+            --light-orange: #FFF3E8;
+            --primary-green: #4CAF50;
+            --secondary-green: #2E7D32;
+            --light-green: #E8F5E9;
+            --dark-gray: #333;
+            --light-gray: #f5f5f5;
+            --medium-gray: #ddd;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header et Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+        
+        .logo span {
+            color: var(--primary-orange);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-orange);
+        }
+        
+        .btn {
+            padding: 10px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-orange);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-orange);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--secondary-green);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-green);
+            color: var(--primary-green);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+        }
+        
+        .hero h1 span {
+            color: var(--primary-green);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: var(--dark-gray);
+        }
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        /* Fonctionnalités */
+        .features {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+            border-top: 4px solid var(--primary-green);
+        }
+        
+        .feature-card:nth-child(2) {
+            border-top-color: var(--primary-orange);
+        }
+        
+        .feature-card:nth-child(3) {
+            border-top-color: var(--secondary-green);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-green);
+        }
+        
+        .feature-card:nth-child(2) .feature-icon {
+            color: var(--primary-orange);
+        }
+        
+        .feature-card:nth-child(3) .feature-icon {
+            color: var(--secondary-green);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-gray);
+        }
+        
+        /* Comptes et profils */
+        .account-types {
+            padding: 80px 0;
+            background-color: var(--light-orange);
+        }
+        
+        .account-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .account-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            width: 350px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .account-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .account-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--primary-green);
+        }
+        
+        .account-card:nth-child(2) .account-icon {
+            color: var(--primary-orange);
+        }
+        
+        .account-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+        }
+        
+        .account-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        
+        .account-features li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .account-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-green);
+            font-weight: bold;
+        }
+        
+        .account-card:nth-child(2) .account-features li:before {
+            color: var(--primary-orange);
+        }
+        
+        /* Suivi de commande */
+        .order-tracking {
+            padding: 80px 0;
+            background-color: var(--light-green);
+        }
+        
+        .tracking-demo {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .tracking-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 25px;
+            width: 300px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        
+        .tracking-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--primary-green);
+            text-align: center;
+        }
+        
+        .tracking-steps {
+            list-style: none;
+        }
+        
+        .tracking-steps li {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            background-color: var(--light-gray);
+        }
+        
+        .tracking-steps li.active {
+            background-color: var(--light-green);
+            border-left: 4px solid var(--primary-green);
+        }
+        
+        .tracking-steps li.completed {
+            background-color: var(--light-orange);
+            border-left: 4px solid var(--primary-orange);
+        }
+        
+        .step-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .step-icon.completed {
+            color: var(--primary-orange);
+        }
+        
+        .step-icon.active {
+            color: var(--primary-green);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-gray);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-column h3 span {
+            color: var(--primary-orange);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-orange);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+        
+        /* Modal pour connexion/inscription */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 200;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            padding: 40px;
+            position: relative;
+            animation: modalAppear 0.3s;
+        }
+        
+        @keyframes modalAppear {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-gray);
+        }
+        
+        .modal h2 {
+            margin-bottom: 30px;
+            color: var(--primary-green);
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 5px;
+            border: 1px solid var(--medium-gray);
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-green);
+        }
+        
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .user-type-selector {
+            display: flex;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .user-type-btn {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            background-color: var(--light-gray);
+            cursor: pointer;
+            border: none;
+            font-weight: 600;
+        }
+        
+        .user-type-btn.active {
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+        
+        .user-type-btn:nth-child(2).active {
+            background-color: var(--primary-orange);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin: 5px 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-btns .btn {
+                width: 100%;
+                max-width: 300px;
+                margin-bottom: 10px;
+            }
+            
+            .account-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .form-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .form-buttons .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-seedling"></i>
+                    Agri<span>Connect</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#fonctionnalites">Fonctionnalités</a></li>
+                    <li><a href="#comptes">Comptes</a></li>
+                    <li><a href="#suivi">Suivi commande</a></li>
+                    <li><a href="#" class="btn btn-outline" id="loginBtn">Connexion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="container">
+            <h1>Des <span>produits bio</span> locaux pour votre établissement</h1>
+            <p>AgriConnect met en relation directe les agriculteurs bio avec les restaurants, hôtels et sites touristiques pour des approvisionnements durables à prix abordables.</p>
+            <div class="hero-btns">
+                <a href="#" class="btn btn-primary" id="signupRestaurateurBtn">Créer un compte Restaurateur</a>
+                <a href="#" class="btn btn-secondary" id="signupAgriculteurBtn">Créer un compte Agriculteur</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fonctionnalités -->
+    <section class="features" id="fonctionnalites">
+        <div class="container">
+            <div class="section-title">
+                <h2>Comment fonctionne AgriConnect ?</h2>
+                <p>Une plateforme simple et efficace pour faciliter les achats directs de produits bio locaux</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Découvrez des produits bio locaux</h3>
+                    <p>Parcourez le catalogue des agriculteurs de votre région, avec des produits frais, de saison et certifiés bio.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>Commandez en ligne</h3>
+                    <p>Effectuez vos commandes directement sur la plateforme, avec gestion des quantités, des dates et des modalités de livraison.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Suivez votre commande</h3>
+                    <p>Suivez en temps réel l'état de votre commande, de la préparation à la livraison, avec notifications à chaque étape.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Types de Comptes -->
+    <section class="account-types" id="comptes">
+        <div class="container">
+            <div class="section-title">
+                <h2>Comptes personnalisés</h2>
+                <p>Des fonctionnalités adaptées à chaque profil d'utilisateur</p>
+            </div>
+            <div class="account-cards">
+                <div class="account-card">
+                    <div class="account-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Restaurateurs & Hôteliers</h3>
+                    <ul class="account-features">
+                        <li>Accès au catalogue de produits bio locaux</li>
+                        <li>Commandes en ligne avec suivi en temps réel</li>
+                        <li>Notifications de livraison</li>
+                        <li>Historique des commandes et factures</li>
+                        <li>Mise en relation directe avec les agriculteurs</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary" id="signupRestaurateurBtn2">Créer un compte</a>
+                </div>
+                <div class="account-card">
+                    <div class="account-icon">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                    <h3>Agriculteurs & Producteurs</h3>
+                    <ul class="account-features">
+                        <li>Gestion de catalogue de produits en ligne</li>
+                        <li>Notifications de nouvelles commandes</li>
+                        <li>Suivi et gestion des commandes</li>
+                        <li>Validation des livraisons</li>
+                        <li>Mise en relation avec des établissements locaux</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary" id="signupAgriculteurBtn2">Créer un compte</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Suivi de commande -->
+    <section class="order-tracking" id="suivi">
+        <div class="container">
+            <div class="section-title">
+                <h2>Suivi de commande en temps réel</h2>
+                <p>Restez informé à chaque étape de votre commande, de la ferme à votre établissement</p>
+            </div>
+            <div class="tracking-demo">
+                <div class="tracking-card">
+                    <h4>Du côté du restaurateur</h4>
+                    <ul class="tracking-steps">
+                        <li class="completed">
+                            <span class="step-icon completed"><i class="fas fa-check-circle"></i></span>
+                            Commande passée
+                        </li>
+                        <li class="completed">
+                            <span class="step-icon completed"><i class="fas fa-check-circle"></i></span>
+                            Commande confirmée
+                        </li>
+                        <li class="active">
+                            <span class="step-icon active"><i class="fas fa-sync-alt"></i></span>
+                            En préparation
+                        </li>
+                        <li>
+                            <span class="step-icon"><i class="fas fa-truck"></i></span>
+                            En livraison
+                        </li>
+                        <li>
+                            <span class="step-icon"><i class="fas fa-box-open"></i></span>
+                            Livrée
+                        </li>
+                    </ul>
+                </div>
+                <div class="tracking-card">
+                    <h4>Du côté de l'agriculteur</h4>
+                    <ul class="tracking-steps">
+                        <li class="completed">
+                            <span class="step-icon completed"><i class="fas fa-bell"></i></span>
+                            Notification de commande
+                        </li>
+                        <li class="completed">
+                            <span class="step-icon completed"><i class="fas fa-check-circle"></i></span>
+                            Commande confirmée
+                        </li>
+                        <li class="active">
+                            <span class="step-icon active"><i class="fas fa-sync-alt"></i></span>
+                            Préparation des produits
+                        </li>
+                        <li>
+                            <span class="step-icon"><i class="fas fa-truck"></i></span>
+                            Livraison en cours
+                        </li>
+                        <li>
+                            <span class="step-icon"><i class="fas fa-clipboard-check"></i></span>
+                            Livraison validée
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Agri<span>Connect</span></h3>
+                    <p>La plateforme qui connecte directement les agriculteurs bio avec les établissements de restauration et d'hébergement pour une alimentation durable et locale.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#fonctionnalites">Fonctionnalités</a></li>
+                        <li><a href="#comptes">Comptes</a></li>
+                        <li><a href="#suivi">Suivi commande</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> contact@agriconnect.fr</li>
+                        <li><i class="fas fa-phone"></i> +33 1 23 45 67 89</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Paris, France</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 AgriConnect. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de connexion/inscription -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2 id="modalTitle">Connexion</h2>
+            
+            <div class="user-type-selector" id="userTypeSelector">
+                <button class="user-type-btn active" data-type="restaurateur">Restaurateur</button>
+                <button class="user-type-btn" data-type="agriculteur">Agriculteur</button>
+            </div>
+            
+            <form id="authForm">
+                <div class="form-group" id="nameField" style="display: none;">
+                    <label for="name">Nom complet / Nom de l'établissement</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group" id="confirmPasswordField" style="display: none;">
+                    <label for="confirmPassword">Confirmer le mot de passe</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword">
+                </div>
+                <div class="form-group" id="addressField" style="display: none;">
+                    <label for="address">Adresse</label>
+                    <input type="text" id="address" name="address">
+                </div>
+                <div class="form-group" id="productTypeField" style="display: none;">
+                    <label for="productType">Type de produits (pour agriculteurs)</label>
+                    <select id="productType" name="productType">
+                        <option value="legumes">Légumes</option>
+                        <option value="fruits">Fruits</option>
+                        <option value="viandes">Viandes</option>
+                        <option value="produits-laitiers">Produits laitiers</option>
+                        <option value="autres">Autres</option>
+                    </select>
+                </div>
+                
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Se connecter</button>
+                    <button type="button" class="btn btn-outline" id="switchAuthBtn">Créer un compte</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Éléments du DOM
+        const loginBtn = document.getElementById('loginBtn');
+        const signupRestaurateurBtns = document.querySelectorAll('[id^="signupRestaurateurBtn"]');
+        const signupAgriculteurBtns = document.querySelectorAll('[id^="signupAgriculteurBtn"]');
+        const authModal = document.getElementById('authModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const userTypeSelector = document.getElementById('userTypeSelector');
+        const userTypeBtns = document.querySelectorAll('.user-type-btn');
+        const authForm = document.getElementById('authForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const switchAuthBtn = document.getElementById('switchAuthBtn');
+        
+        // Champs conditionnels
+        const nameField = document.getElementById('nameField');
+        const confirmPasswordField = document.getElementById('confirmPasswordField');
+        const addressField = document.getElementById('addressField');
+        const productTypeField = document.getElementById('productTypeField');
+        
+        // État de l'authentification
+        let isLoginMode = true;
+        let userType = 'restaurateur';
+        
+        // Ouvrir modal de connexion
+        loginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            isLoginMode = true;
+            updateAuthModal();
+            authModal.style.display = 'flex';
+        });
+        
+        // Ouvrir modal d'inscription pour restaurateurs
+        signupRestaurateurBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                isLoginMode = false;
+                userType = 'restaurateur';
+                updateAuthModal();
+                authModal.style.display = 'flex';
+                
+                // Activer le bouton restaurateur
+                userTypeBtns.forEach(btn => btn.classList.remove('active'));
+                userTypeBtns[0].classList.add('active');
+            });
+        });
+        
+        // Ouvrir modal d'inscription pour agriculteurs
+        signupAgriculteurBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                isLoginMode = false;
+                userType = 'agriculteur';
+                updateAuthModal();
+                authModal.style.display = 'flex';
+                
+                // Activer le bouton agriculteur
+                userTypeBtns.forEach(btn => btn.classList.remove('active'));
+                userTypeBtns[1].classList.add('active');
+            });
+        });
+        
+        // Fermer modal
+        closeModal.addEventListener('click', () => {
+            authModal.style.display = 'none';
+        });
+        
+        // Fermer modal en cliquant à l'extérieur
+        window.addEventListener('click', (e) => {
+            if (e.target === authModal) {
+                authModal.style.display = 'none';
+            }
+        });
+        
+        // Changer le type d'utilisateur
+        userTypeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                userTypeBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                userType = btn.dataset.type;
+                updateAuthModal();
+            });
+        });
+        
+        // Basculer entre connexion et inscription
+        switchAuthBtn.addEventListener('click', () => {
+            isLoginMode = !isLoginMode;
+            updateAuthModal();
+        });
+        
+        // Mettre à jour le formulaire d'authentification
+        function updateAuthModal() {
+            if (isLoginMode) {
+                modalTitle.textContent = 'Connexion';
+                submitBtn.textContent = 'Se connecter';
+                switchAuthBtn.textContent = 'Créer un compte';
+                
+                // Masquer les champs d'inscription
+                nameField.style.display = 'none';
+                confirmPasswordField.style.display = 'none';
+                addressField.style.display = 'none';
+                productTypeField.style.display = 'none';
+            } else {
+                modalTitle.textContent = 'Créer un compte';
+                submitBtn.textContent = 'S\'inscrire';
+                switchAuthBtn.textContent = 'Déjà un compte ? Se connecter';
+                
+                // Afficher les champs d'inscription
+                nameField.style.display = 'block';
+                confirmPasswordField.style.display = 'block';
+                addressField.style.display = 'block';
+                
+                // Afficher le champ type de produit uniquement pour les agriculteurs
+                if (userType === 'agriculteur') {
+                    productTypeField.style.display = 'block';
+                } else {
+                    productTypeField.style.display = 'none';
+                }
+            }
+            
+            // Mettre à jour les couleurs selon le type d'utilisateur
+            if (userType === 'restaurateur') {
+                submitBtn.className = 'btn btn-primary';
+            } else {
+                submitBtn.className = 'btn btn-secondary';
+            }
+        }
+        
+        // Gérer la soumission du formulaire
+        authForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (isLoginMode) {
+                // Simulation de connexion
+                alert(`Connexion réussie en tant que ${userType} avec l'email: ${email}`);
+                authModal.style.display = 'none';
+                
+                // Mettre à jour le header pour montrer que l'utilisateur est connecté
+                loginBtn.textContent = 'Mon compte';
+                loginBtn.classList.remove('btn-outline');
+                if (userType === 'restaurateur') {
+                    loginBtn.classList.add('btn-primary');
+                } else {
+                    loginBtn.classList.add('btn-secondary');
+                }
+            } else {
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                
+                // Vérifier que les mots de passe correspondent
+                if (password !== confirmPassword) {
+                    alert('Les mots de passe ne correspondent pas');
+                    return;
+                }
+                
+                // Simulation d'inscription
+                alert(`Inscription réussie en tant que ${userType}. Un email de confirmation a été envoyé à ${email}`);
+                authModal.style.display = 'none';
+                
+                // Mettre à jour le header pour montrer que l'utilisateur est connecté
+                loginBtn.textContent = 'Mon compte';
+                loginBtn.classList.remove('btn-outline');
+                if (userType === 'restaurateur') {
+                    loginBtn.classList.add('btn-primary');
+                } else {
+                    loginBtn.classList.add('btn-secondary');
+                }
+            }
+            
+            // Réinitialiser le formulaire
+            authForm.reset();
+        });
+        
+        // Animation pour le suivi de commande
+        function animateOrderTracking() {
+            const steps = document.querySelectorAll('.tracking-steps li');
+            let index = 0;
+            
+            setInterval(() => {
+                // Retirer les classes actives
+                steps.forEach(step => {
+                    step.classList.remove('active', 'completed');
+                });
+                
+                // Marquer les étapes comme terminées
+                for (let i = 0; i < index; i++) {
+                    if (i < steps.length) {
+                        steps[i].classList.add('completed');
+                    }
+                }
+                
+                // Marquer l'étape actuelle
+                if (index < steps.length) {
+                    steps[index].classList.add('active');
+                }
+                
+                // Passer à l'étape suivante
+                index++;
+                
+                // Recommencer à la fin
+                if (index > steps.length) {
+                    index = 0;
+                }
+            }, 2000);
+        }
+        
+        // Démarrer l'animation de suivi de commande
+        animateOrderTracking();
+    </script>
+</body>
+</html>
